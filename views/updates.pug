@@ -1,0 +1,25 @@
+doctype html
+html 
+    head 
+        title= `${title}`
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        link(rel="stylesheet", href="/css/style.css")
+    body    
+        h1= mode + " Pet"
+        .form-wrapper
+            form(action='/update-cobj' method='POST')
+                - if (pet && pet.id)
+                    input(type='hidden' name='petId' value=pet.id)
+                div
+                    label(for='name') Name (*):
+                    input(type='text' name='name' id='name' required value=pet ? pet.properties.name : '') 
+                div
+                    label(for='age') Age:
+                    input(type='number' name='age' id='age' value=pet ? pet.properties.pet_age : '') 
+                div
+                    label(for='type') Type:
+                    input(type='text' name='type' id='type' value=pet ? pet.properties.pet_type : '')
+                div
+                    input(type="submit", value="Save Pet")
+        .center
+            a(href='/') Go Home
